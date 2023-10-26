@@ -34,7 +34,7 @@
     "lint": "eslint . --ext .ts,.tsx",
     "ci": "run-s lint coverage build",
     "prepublishOnly": "pnpm run ci",
-    "prepare": "husky install && build"
+    "prepare": "husky install && npm run build"
   },
   "dependencies": {
     "command-line-args": "^5.2.1",
