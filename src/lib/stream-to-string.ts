@@ -8,6 +8,6 @@ export async function streamToString(stream: Readable) {
   }
 
   return typeof chunks[0] === 'string'
-    ? chunks.join('')
+    ? chunks.join('\n')
     : Buffer.concat(chunks as Uint8Array[]).toString('utf8')
 }
