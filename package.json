@@ -1,5 +1,5 @@
 {
-  "name": "globcatnl",
+  "name": "globcat",
   "version": "1.0.0",
   "description": "Concatenate files from command line with glob pattern. With newlines",
   "type": "module",
