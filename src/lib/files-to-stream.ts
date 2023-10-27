@@ -23,8 +23,9 @@ export default async function filesToStream(
       // here
       nl.push(os.EOL)
       nl.push(null)
+      passthrough = nl.pipe(passthrough, { end: false })
       stream.once('end', () => {
-        passthrough = nl.pipe(passthrough, { end: false })
+
         queueSize--
         if (queueSize === 0) {
           passthrough.end()
