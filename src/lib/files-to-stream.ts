@@ -12,16 +12,17 @@ export default async function filesToStream(
 ): Promise<Stream.Readable> {
   let passthrough = new Stream.PassThrough()
   let queueSize = files.length
-  let nl = new Stream.Readable()
-  // here
-  nl.push(os.EOL)
-  nl.push(null)
+  
   
   for (const file of files) {
     const stats = await fsPromises.stat(file)
     if (stats.isFile()) {
       const stream = fs.createReadStream(file)
       passthrough = stream.pipe(passthrough, { end: false })
+      let nl = new Stream.Readable()
+      // here
+      nl.push(os.EOL)
+      nl.push(null)
       stream.once('end', () => {
         passthrough = nl.pipe(passthrough, { end: false })
         queueSize--
