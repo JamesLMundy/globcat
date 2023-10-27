@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import fsPromises from 'node:fs/promises'
 import Stream from 'node:stream'
-import os from 'os'
+import os from 'node:os'
 
 /**
  * Takes a list of paths to files and returns a promise that resolves to a stream with the combined
