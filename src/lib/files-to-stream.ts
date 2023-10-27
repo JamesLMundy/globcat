@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import fsPromises from 'node:fs/promises'
 import Stream from 'node:stream'
+import os from 'os'
 
 /**
  * Takes a list of paths to files and returns a promise that resolves to a stream with the combined
@@ -11,12 +12,16 @@ export default async function filesToStream(
 ): Promise<Stream.Readable> {
   let passthrough = new Stream.PassThrough()
   let queueSize = files.length
-
+  let nl = new Stream.Readable
+  nl.push(os.EOL)
+  nl.push(null)
+  
   for (const file of files) {
     const stats = await fsPromises.stat(file)
     if (stats.isFile()) {
       const stream = fs.createReadStream(file)
       passthrough = stream.pipe(passthrough, { end: false })
+      passthrough = stream.nl(passthrough, { end: false })
       stream.once('end', () => {
         queueSize--
         if (queueSize === 0) {
