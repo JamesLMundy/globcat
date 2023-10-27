@@ -12,7 +12,7 @@ export default async function filesToStream(
 ): Promise<Stream.Readable> {
   let passthrough = new Stream.PassThrough()
   let queueSize = files.length
-  let nl = new Stream.Readable
+  let nl = new Stream.Readable()
   nl.push(os.EOL)
   nl.push(null)
   
