@@ -1,4 +1,5 @@
 import type { Readable } from 'node:stream'
+import os from 'os';
 
 export async function streamToString(stream: Readable) {
   const chunks: unknown[] = []
@@ -8,6 +9,6 @@ export async function streamToString(stream: Readable) {
   }
 
   return typeof chunks[0] === 'string'
-    ? chunks.join('\n')
+    ? chunks.join(os.EOL)
     : Buffer.concat(chunks as Uint8Array[]).toString('utf8')
 }
