@@ -9,12 +9,12 @@
 [![GitHub issues](https://img.shields.io/github/issues/smonn/globcat.svg)](https://github.com/smonn/globcat/issues)
 [![prettier.io](https://img.shields.io/badge/code%20style-prettier.io-brightgreen.svg)](https://prettier.io)
 
-Concatenate files from command line with glob pattern.
+Concatenate files from command line with glob pattern. With newlines.
 
 ## Install
 
 ```sh
-npm install [--global] globcat
+npm install [--global] git+https://github.com/JamesLMundy/globcat/
 ```
 
 ## Usage
