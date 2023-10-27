@@ -21,8 +21,8 @@ export default async function filesToStream(
     if (stats.isFile()) {
       const stream = fs.createReadStream(file)
       passthrough = stream.pipe(passthrough, { end: false })
-      passthrough = stream.nl(passthrough, { end: false })
       stream.once('end', () => {
+        passthrough = nl.pipe(passthrough, { end: false })
         queueSize--
         if (queueSize === 0) {
           passthrough.end()
